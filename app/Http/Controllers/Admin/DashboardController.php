@@ -4,13 +4,16 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class DashboardController extends Controller
+use App\Http\Controllers\Admin\AdminController;
+
+class DashboardController extends AdminController
 {
-    private $pathViewController = 'admin.pages.dashboard.';  // slider
-    private $controllerName     = 'dashboard';
     
     public function __construct()
     {
+        $this->pathViewController = 'admin.pages.dashboard.';  // slider
+        $this->controllerName     = 'dashboard';
+
         view()->share('controllerName', $this->controllerName);
     }
 

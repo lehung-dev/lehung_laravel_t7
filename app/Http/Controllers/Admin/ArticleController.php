@@ -1,21 +1,21 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+
+use App\Http\Controllers\Admin\AdminController;
 use App\Models\ArticleModel as MainModel;
 use App\Models\CategoryModel;
 use App\Http\Requests\ArticleRequest as MainRequest ;    
 
-class ArticleController extends Controller
+class ArticleController extends AdminController
 {
-    private $pathViewController = 'admin.pages.article.';  // slider
-    private $controllerName     = 'article';
-    private $params             = [];
-    private $model;
-
+    
     public function __construct()
     {
+        $this->pathViewController = 'admin.pages.article.';  // slider
+        $this->controllerName     = 'article';
+
         $this->model = new MainModel();
         $this->params["pagination"]["totalItemsPerPage"] = 5;
         view()->share('controllerName', $this->controllerName);
@@ -70,26 +70,5 @@ class ArticleController extends Controller
             return redirect()->route($this->controllerName)->with("zvn_notify", $notify);
         }
     }
-
-    public function status(Request $request)
-    {
-        $params["currentStatus"]  = $request->status;
-        $params["id"]             = $request->id;
-        $this->model->saveItem($params, ['task' => 'change-status']);
-        return redirect()->route($this->controllerName)->with('zvn_notify', 'Cập nhật trạng thái thành công!');
-    }
-
-    public function type(Request $request) {
-        $params["currentType"]    = $request->type;
-        $params["id"]             = $request->id;
-        $this->model->saveItem($params, ['task' => 'change-type']);
-        return redirect()->route($this->controllerName)->with("zvn_notify", "Cập nhật kiểu bài viết thành công!");
-    }
-
-    public function delete(Request $request)
-    {
-        $params["id"]             = $request->id;
-        $this->model->deleteItem($params, ['task' => 'delete-item']);
-        return redirect()->route($this->controllerName)->with('zvn_notify', 'Xóa phần tử thành công!');
-    }
+    
 }

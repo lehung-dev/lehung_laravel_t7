@@ -3,18 +3,19 @@
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+
+use App\Http\Controllers\Admin\AdminController;
 use App\Models\UserModel as MainModel;
 use App\Http\Requests\UserRequest as MainRequest ;    
 
-class UserController extends Controller
+class UserController extends AdminController
 {
-    private $pathViewController = 'admin.pages.user.'; 
-    private $controllerName     = 'user';
-    private $params             = [];
-    private $model;
-
+    
     public function __construct() 
     {
+        $this->pathViewController = 'admin.pages.user.'; 
+        $this->controllerName     = 'user';
+
         $this->model = new MainModel();
         $this->params["pagination"]["totalItemsPerPage"] = 5;
         view()->share('controllerName', $this->controllerName);
@@ -36,19 +37,6 @@ class UserController extends Controller
         ]);
     }
 
-    public function form(Request $request)
-    {
-        $item = null;
-        if($request->id !== null ) {
-            $params["id"] = $request->id;
-            $item = $this->model->getItem( $params, ['task' => 'get-item']);
-        }
-
-        return view($this->pathViewController .  'form', [
-            'item'        => $item
-        ]);
-    }
-
     public function save(MainRequest $request)
     {
         if ($request->method() == 'POST') {
@@ -66,13 +54,6 @@ class UserController extends Controller
         }
     }
 
-    public function status(Request $request)
-    {
-        $params["currentStatus"]  = $request->status;
-        $params["id"]             = $request->id;
-        $this->model->saveItem($params, ['task' => 'change-status']);
-        return redirect()->route($this->controllerName)->with('zvn_notify', 'Cập nhật trạng thái thành công!');
-    }
 
     public function changeLevel(MainRequest $request)
     {
@@ -99,10 +80,4 @@ class UserController extends Controller
         return redirect()->route($this->controllerName)->with("zvn_notify", "Cập nhật kiểu hiện thị thành công!");
     }
 
-    public function delete(Request $request)
-    {
-        $params["id"]             = $request->id;
-        $this->model->deleteItem($params, ['task' => 'delete-item']);
-        return redirect()->route($this->controllerName)->with('zvn_notify', 'Xóa phần tử thành công!');
-    }
 }
