@@ -1,2 +1,2 @@
-# lehung_laravel_t7
+# Laravel
 Lớp Laravel chiều T7
