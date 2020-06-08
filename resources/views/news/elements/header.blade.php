@@ -1,6 +1,7 @@
 @php 
     use App\Models\CategoryModel as CategoryModel;
     use App\Helpers\URL;
+    use Illuminate\Support\Facades\Route;
 
     $categoryModel = new CategoryModel();
     $itemsCategory = $categoryModel->listItems(null, ['task' => 'news-list-items']);
@@ -13,9 +14,8 @@
         $xhtmlMenu = '<nav class="main_nav"><ul class="main_nav_list d-flex flex-row align-items-center justify-content-start">';
         $xhtmlMenuMobile = '<nav class="menu_nav"><ul class="menu_mm">';
         $categoryIdCurrent = Route::input('category_id');
-
+        
         foreach ($itemsCategory as $item) {
-            
             $link       =  URL::linkCategory($item['id'], $item['name']); 
             $classActive = ($categoryIdCurrent == $item['id']) ? 'class="active"' : '';
 
@@ -32,7 +32,6 @@
         $xhtmlMenu .= $xhtmlMenuUser . '</ul></nav>';
         $xhtmlMenuMobile .= $xhtmlMenuUser . '</ul></nav>';
     }
-
 @endphp
 
 <header class="header">
@@ -75,7 +74,10 @@
                         </div>
 
                         <!-- Navigation -->
-                        {!! $xhtmlMenu !!}
+                        @isset($xhtmlMenu)
+                            {!! $xhtmlMenu !!}
+                        @endisset   
+                            
 
                         <!-- Hamburger -->
                         <div class="hamburger ml-auto menu_mm"><i class="fa fa-bars  trans_200 menu_mm" aria-hidden="true"></i></div>
@@ -88,8 +90,7 @@
 
 <div class="menu d-flex flex-column align-items-end justify-content-start text-right menu_mm trans_400">
     <div class="menu_close_container"><div class="menu_close"><div></div><div></div></div></div>
-
-    {!! $xhtmlMenuMobile !!}
-    
-    
+    @isset($xhtmlMenuMobile)
+        {!! $xhtmlMenuMobile !!}
+    @endisset 
 </div>

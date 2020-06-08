@@ -46,6 +46,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if($exception instanceof UserException)
+        {
+            return response()->view('errors.layout');
+        }
         return parent::render($request, $exception);
     }
 }

@@ -1,0 +1,253 @@
+/**********************************************************/
+$color1: #3c72e1; // xanh
+$color2: #3c72e1; // xanh
+$color3: #d93b39; // Đỏ nhạt
+$color4: #ba312f; // Đỏ đậm
+
+.page-404 {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    color: $color1;
+    position: relative;
+    text-align: center;
+    h1 {
+        font-size: 150px;
+        margin-top: 0px;
+        line-height: 1.2em;
+        font-weight: bold;
+        color: $color1;
+        margin-bottom: 10px;
+    }
+    h3,
+    p {
+        display: block;
+        line-height: 1.2em;
+        margin-bottom: 20px;
+    }
+    .note_found {
+        font-size: 18px;
+        font-style: italic;
+        max-width: 60%;
+        text-align: center;
+        margin: 0 auto;
+        line-height: 1.6em;
+        margin-bottom: 20px;
+    }
+    .capital {
+        text-transform: uppercase;
+    }
+    .links-wrapper {
+        margin: 30px 0;
+        text-align: center;
+        ul.links {
+            float: none;
+            display: inline-block;
+            margin: 0px auto;
+            text-align: center;
+            &::after {
+                content: "";
+                display: block;
+                clear: both;
+            }
+            li {
+                list-style-type: none;
+                display: inline-block;
+                margin: 0 10px;
+                text-align: center;
+                float: left;
+                a {
+                    position: relative;
+                    i {
+                        position: absolute;
+                        left: 50%;
+                        top: 50%;
+                        -webkit-transform: translate(-50%, -50%);
+                        -moz-transform: translate(-50%, -50%);
+                        -o-transform: translate(-50%, -50%);
+                        -ms-transform: translate(-50%, -50%);
+                        transform: translate(-50%, -50%);
+                    }
+                }
+                a.icon {
+                    height: 50px;
+                    width: 50px;
+                    min-width: 50px;
+                    display: inline-block;
+                    padding: 3px 0px;
+                    background-color: #fff;
+                    border-radius: 50%;
+                    text-align: center;
+                    background: $color1;
+                    color: #ffffff;
+                    transition: all 0.2s linear;
+                    -moz-transition: all 0.2s linear;
+                    -webkit-transition: all 0.2s linear;
+                    -o-transition: all 0.2s linear;
+                    float: left;
+                    &:hover {
+                        background-color: $color2;
+                        color: #fff;
+                    }
+                }
+                a.text {
+                    float: left;
+                    line-height: 50px;
+                    margin-left: 15px;
+                    font-size: 16px;
+                    color: $color1;
+                }
+                &:last-child {
+                    margin-right: 0;
+                }
+                &::after {
+                    content: "";
+                    display: block;
+                    clear: both;
+                }
+            }
+        }
+    }
+}
+.center {
+    text-align: center;
+}
+.f1 {
+    font-size: 34px;
+}
+
+@keyframes bubbles1 {
+    0% {
+        opacity: 0;
+        width: 7px;
+        height: 7px;
+        top: 100px;
+        left: 70px;
+    }
+    25% {
+        opacity: 0.25;
+        width: 8px;
+        height: 8px;
+        top: 90px;
+        left: 70px;
+    }
+    50% {
+        opacity: 0.5;
+        width: 9px;
+        height: 9px;
+        top: 70px;
+        left: 70px;
+    }
+    75% {
+        opacity: 0.75;
+        width: 10px;
+        height: 10px;
+        top: 60px;
+        left: 65px;
+    }
+    100% {
+        opacity: 0;
+        width: 11px;
+        height: 11px;
+        top: 30px;
+        left: 70px;
+    }
+}
+
+@-webkit-keyframes bubbles1 {
+    0% {
+        opacity: 0;
+        width: 5px;
+        height: 5px;
+        top: 100px;
+        left: 70px;
+    }
+    25% {
+        opacity: 0.25;
+        width: 6px;
+        height: 6px;
+        top: 90px;
+        left: 70px;
+    }
+    50% {
+        opacity: 0.5;
+        width: 7px;
+        height: 7px;
+        top: 50px;
+        left: 70px;
+    }
+    75% {
+        opacity: 0.75;
+        width: 9px;
+        height: 9px;
+        top: 40px;
+        left: 65px;
+    }
+    100% {
+        opacity: 0;
+        width: 10px;
+        height: 10px;
+        top: 10px;
+        left: 75px;
+    }
+}
+
+#cflask-holder {
+    span {
+        min-width: 150px;
+        min-height: 150px;
+        width: 150px;
+        display: block;
+        background-color: #fff;
+        margin: 0px auto;
+        text-align: center;
+        border-radius: 150px;
+        position: relative;
+        i {
+            padding: 40px 0px 0px 0px;
+            font-size: 80px;
+            &#b1 {
+                position: absolute;
+                min-width: 10px;
+                min-height: 10px;
+                border-radius: 50%;
+                background-color: $color1;
+                left: 70px;
+                top: 70px;
+                -webkit-animation: bubbles1 infinite linear 1s;
+                animation: bubbles1 infinite linear 1s;
+                padding: 0px;
+            }
+            &#b2 {
+                position: absolute;
+                min-width: 10px;
+                min-height: 10px;
+                border-radius: 50%;
+                background-color: $color2;
+                left: 70px;
+                top: 70px;
+                -webkit-animation: bubbles1 infinite linear 2s;
+                animation: bubbles1 infinite linear 2s;
+                padding: 0px;
+            }
+            &#b3 {
+                position: absolute;
+                min-width: 10px;
+                min-height: 10px;
+                border-radius: 50%;
+                background-color: $color2;
+                left: 70px;
+                top: 70px;
+                -webkit-animation: bubbles1 infinite linear 2500ms;
+                animation: bubbles1 infinite linear 2500ms;
+                padding: 0px;
+            }
+        }
+    }
+}
+.search-form {
+    margin-top: 20px;
+}
+
+#product_watched {
+    display: none;
+}
