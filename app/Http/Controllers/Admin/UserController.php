@@ -80,4 +80,21 @@ class UserController extends AdminController
         return redirect()->route($this->controllerName)->with("zvn_notify", "Cập nhật kiểu hiện thị thành công!");
     }
 
+    public function ajax(Request $request)
+    {
+        $action     = $request->do;
+        $jsout      = '';
+		switch($action) 
+		{	
+            case 'change-level':
+                $params["currentLevel"]   = $request->level;
+                $params["id"]             = $request->id;
+                $jsout = $this->model->saveItem($params, ['task' => 'change-level']);
+			break;
+		}
+		flush();
+		echo json_encode($jsout);
+		exit();
+    }
+
 }

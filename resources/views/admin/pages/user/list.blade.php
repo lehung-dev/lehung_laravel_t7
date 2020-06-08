@@ -29,7 +29,7 @@
                             $username        = Hightlight::show($val['username'], $params['search'], 'username');
                             $fullname        = Hightlight::show($val['fullname'], $params['search'], 'fullname');
                             $email           = Hightlight::show($val['email'], $params['search'], 'email');
-                            $level           = Template::showItemSelect($controllerName, $id, $val['level'], 'level');
+                            $level           = Template::showItemSelectAjax($controllerName, $id, $val['level'], 'level', 'change-level');
                             $avatar          = Template::showItemThumb($controllerName, $val['avatar'], $val['name']);
                             $status          = Template::showItemStatus($controllerName, $id, $val['status']); ;
                             $createdHistory  = Template::showItemHistory($val['created_by'], $val['created']);

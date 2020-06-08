@@ -1,6 +1,6 @@
 <?php 
 namespace App\Helpers;
-use Config;
+use Illuminate\Support\Facades\Config;
 
 class Template {
     public static function showButtonFilter ($controllerName, $itemsStatusCount, $currentFilterStatus, $paramsSearch) { // $currentFilterStatus active inactive all
@@ -103,6 +103,23 @@ class Template {
         
        $tmplDisplay = Config::get('zvn.template.' . $fieldName);
        $xhtml = sprintf('<select name="select_change_attr" data-url="%s" class="form-control">', $link  );
+
+        foreach ($tmplDisplay as $key => $value) {
+           $xhtmlSelected = '';
+           if ($key == $displayValue) $xhtmlSelected = 'selected="selected"';
+            $xhtml .= sprintf('<option value="%s" %s>%s</option>', $key, $xhtmlSelected, $value['name']);
+        }
+        $xhtml .= '</select>';
+
+        return $xhtml;
+    }
+    
+    public static function showItemSelectAjax($controllerName, $id, $displayValue, $fieldName, $doAction)
+    {
+       $link          = route($controllerName . '/ajax', [ 'do' => $doAction, $fieldName => 'value_new', 'id' => $id]);
+        
+       $tmplDisplay = Config::get('zvn.template.' . $fieldName);
+       $xhtml = sprintf('<select name="select_change_attr_ajax" data-url="%s" class="form-control">', $link  );
 
         foreach ($tmplDisplay as $key => $value) {
            $xhtmlSelected = '';

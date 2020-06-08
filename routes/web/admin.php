@@ -81,6 +81,7 @@ Route::group(['prefix' => $prefixAdmin, 'namespace' => 'Admin', 'middleware' => 
         Route::post('change-level',                     [ 'as' => $controllerName . '/change-level',        'uses' => $controller . 'changeLevel']);
         Route::get('delete/{id}',                       [ 'as' => $controllerName . '/delete',      'uses' => $controller . 'delete'])->where('id', '[0-9]+');
         Route::get('change-status-{status}/{id}',       [ 'as' => $controllerName . '/status',      'uses' => $controller . 'status']);
-        Route::get('change-level-{level}/{id}',         [ 'as' => $controllerName . '/level',      'uses' => $controller . 'level']);
+        Route::get('change-level-{level}/{id}',         [ 'as' => $controllerName . '/level',       'uses' => $controller . 'level']);
+        Route::get('ajax/{do}/{level}/{id}',            [ 'as' => $controllerName . '/ajax',        'uses' => $controller . 'ajax'])->where('id', '[0-9]+');
     });
 });

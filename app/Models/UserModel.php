@@ -5,7 +5,8 @@ namespace App\Models;
 use App\Models\AdminModel;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use DB; 
+use Illuminate\Support\Facades\DB;
+
 class UserModel extends AdminModel
 {
     public function __construct() {
@@ -126,7 +127,7 @@ class UserModel extends AdminModel
 
         if($options['task'] == 'change-level') {
             $level = $params['currentLevel'];
-            self::where('id', $params['id'])->update(['level' => $level]);
+            return self::where('id', $params['id'])->update(['level' => $level]);
         }
 
         if($options['task'] == 'change-level-post') {
