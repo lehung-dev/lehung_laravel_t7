@@ -20,11 +20,12 @@ Route::get('/', function () {
 });
 
 
-Route::group(['prefix' => $prefixAdmin, 'namespace' => 'Admin', 'middleware' => ['permission.admin']], function () {
+Route::group(['prefix' => $prefixAdmin, 'namespace' => 'Admin', 'middleware' => ['permission.admin']], function () use ($prefixAdmin){
     // ============================== DASHBOARD ==============================
     $prefix         = 'dashboard';
     $controllerName = 'dashboard';
     Route::get('/', ['as'    =>  $controllerName,  'uses'               =>  ucfirst($controllerName)  . 'Controller@' . 'index']);
+    Route::get('/', ['as'    =>  $prefixAdmin,  'uses'               =>  ucfirst($controllerName)  . 'Controller@' . 'index']);
     Route::group(['prefix' =>  $prefix], function () use ($controllerName) {
         $controller = ucfirst($controllerName)  . 'Controller@';
         Route::get('/',                             [ 'as' => $controllerName,                  'uses' => $controller . 'index' ]);

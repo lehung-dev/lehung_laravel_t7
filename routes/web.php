@@ -65,5 +65,13 @@ Route::group(['prefix' => $prefixNews, 'namespace' => 'News'], function () {
     });
 });
 
+
+Route::get('/clear', function() {
+   Artisan::call('cache:clear');
+   Artisan::call('config:clear');
+   Artisan::call('config:cache');
+   Artisan::call('view:clear');
+   return "Cleared!";
+});
 // bai-viet/suc-khoe-3.php
 

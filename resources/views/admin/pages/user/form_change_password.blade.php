@@ -9,6 +9,7 @@
     $inputHiddenID    = Form::hidden('id', $item['id']);
     $inputHiddenTask  = Form::hidden('task', 'change-password');
 
+
     $elements = [
         [
             'label'   => Form::label('password', 'Password', $formLabelAttr),
@@ -34,7 +35,8 @@
                 'accept-charset' => 'UTF-8',
                 'enctype'        => 'multipart/form-data',
                 'class'          => 'form-horizontal form-label-left',
-                'id'             => 'main-form' ])  }}
+                'id'             => 'change-password-form',
+                'name'           => 'change-password-form' ])  }}
                 {!! FormTemplate::show($elements)  !!}
             {{ Form::close() }}
         </div>

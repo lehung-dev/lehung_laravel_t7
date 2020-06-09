@@ -1,7 +1,7 @@
 
 @php
     use App\Helpers\Form as FormTemplate;
-    use App\Helpers\Template;
+    use Illuminate\Http\Request;
 
     $formInputAttr = config('zvn.template.form_input');
     $formLabelAttr = config('zvn.template.form_label');
@@ -10,6 +10,10 @@
 
     $inputHiddenID    = Form::hidden('id', $item['id']);
     $inputHiddenAvatar = Form::hidden('avatar_current', $item['avatar']);
+
+    $task = $request->only('task');
+    var_dump($task);
+
     $inputHiddenTask  = Form::hidden('task', 'edit-info');
     $elements = [
         [
@@ -47,7 +51,8 @@
                 'accept-charset' => 'UTF-8',
                 'enctype'        => 'multipart/form-data',
                 'class'          => 'form-horizontal form-label-left',
-                'id'             => 'main-form' ])  }}
+                'id'             => 'main-form',
+                'name'           => 'info-form' ])  }}
                 {!! FormTemplate::show($elements)  !!}
             {{ Form::close() }}
         </div>

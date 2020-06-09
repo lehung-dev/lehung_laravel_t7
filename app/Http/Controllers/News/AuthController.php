@@ -38,7 +38,8 @@ class AuthController extends Controller
                 return redirect()->route($this->controllerName . '/login')->with('news_notify', 'Tài khoản hoặc mật khẩu không chính xác!');
 
             $request->session()->put('userInfo', $userInfo);
-            return redirect()->route('home');
+            $prefixAdmin = config('zvn.url.prefix_admin');
+            return ($userInfo['level'] == 'admin') ? redirect()->route($prefixAdmin) : redirect()->route('home');
         }
     }
 
