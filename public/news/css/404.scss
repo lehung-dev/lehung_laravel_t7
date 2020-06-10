@@ -1,12 +1,12 @@
 /**********************************************************/
-$color1: #3c72e1; // xanh
+$color1: #5f996e; // xanh
 $color2: #3c72e1; // xanh
 $color3: #d93b39; // Đỏ nhạt
 $color4: #ba312f; // Đỏ đậm
 
 .page-404 {
-    padding-top: 30px;
-    padding-bottom: 30px;
+    padding-top: 50px;
+    padding-bottom: 50px;
     color: $color1;
     position: relative;
     text-align: center;
@@ -204,7 +204,7 @@ $color4: #ba312f; // Đỏ đậm
         position: relative;
         i {
             padding: 40px 0px 0px 0px;
-            font-size: 80px;
+            font-size: 120px;
             &#b1 {
                 position: absolute;
                 min-width: 10px;

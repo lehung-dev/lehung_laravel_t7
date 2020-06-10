@@ -8,10 +8,8 @@ $formLabelAttr = config('zvn.template.form_label_edit');
 
 $levelValue       = ['default' => 'Select value', 'admin' => config('zvn.template.level.admin.name'), 'member' => config('zvn.template.level.member.name')];
 
-$task = old('task', 'change-level');
-
 $inputHiddenID    = Form::hidden('id', $item['id']);
-$inputHiddenTask  = Form::hidden('task', $task);
+$inputHiddenTask  = Form::hidden('task', 'change-level');
 
 $elements = [
     [

@@ -2,18 +2,18 @@
     use App\Models\CategoryModel as CategoryModel;
     use App\Helpers\URL;
     use Illuminate\Support\Facades\Route;
-
+   
     $categoryModel = new CategoryModel();
     $itemsCategory = $categoryModel->listItems(null, ['task' => 'news-list-items']);
 
     $xhtmlMenu = '';
     $xhtmlMenuMobile = '';
-
-    if (count($itemsCategory) > 0) {
+    if (count($itemsCategory) > 0) 
+    {
         
         $xhtmlMenu = '<nav class="main_nav"><ul class="main_nav_list d-flex flex-row align-items-center justify-content-start">';
         $xhtmlMenuMobile = '<nav class="menu_nav"><ul class="menu_mm">';
-        $categoryIdCurrent = Route::input('category_id');
+        $categoryIdCurrent = Route::has('category_id') ? Route::input('category_id') : 0 ;
         
         foreach ($itemsCategory as $item) {
             $link       =  URL::linkCategory($item['id'], $item['name']); 

@@ -2,9 +2,8 @@
 
 namespace App\Exceptions;
 
+use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Throwable;
 
 class Handler extends ExceptionHandler
 {
@@ -30,12 +29,12 @@ class Handler extends ExceptionHandler
     /**
      * Report or log an exception.
      *
-     * @param  \Throwable  $exception
+     * @param  \Exception  $exception
      * @return void
      *
      * @throws \Exception
      */
-    public function report(Throwable $exception)
+    public function report(Exception $exception)
     {
         parent::report($exception);
     }
@@ -44,21 +43,27 @@ class Handler extends ExceptionHandler
      * Render an exception into an HTTP response.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Throwable  $exception
+     * @param  \Exception  $exception
      * @return \Symfony\Component\HttpFoundation\Response
      *
-     * @throws \Throwable
+     * @throws \Exception
      */
-    public function render($request, Exception $e)
+    public function render($request, Exception $exception)
     {
-        if ($this->isHttpException($e)) {
-            $statusCode = $e->getStatusCode();
+        if ($this->isHttpException($exception)) {
+            $statusCode = $exception->getStatusCode();
             switch ($statusCode) {
-                case '404':
-                case '500':
-                    return response()->view('news.main');
+                case '403':
+                    return response()->view('errors.403');
+                    break;
+                case '503':
+                    return response()->view('errors.503');
+                break;
+                default:
+                    return response()->view('errors.404');
+                break;
             }
         }
-        return parent::render($request, $e);
+        return parent::render($request, $exception);
     }
 }

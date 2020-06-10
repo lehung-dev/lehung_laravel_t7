@@ -1,6 +1,5 @@
 @extends('news.main')
 @section('content')
-
     @include ('news.block.slider')
     <!-- Content Container -->
     <div class="content_container">
